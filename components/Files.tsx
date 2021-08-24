@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {FC, useRef} from 'react';
 import File from './File';
 
 import styles from '../styles/Files.module.css';
@@ -8,6 +8,7 @@ interface FilesProps {
 }
 
 const Files: FC<FilesProps> = ({ files }) => {
+  const fileWrapperRef = useRef(null);
 
   const filesArray = () => {
     const filesArray = [];
@@ -18,9 +19,9 @@ const Files: FC<FilesProps> = ({ files }) => {
   }
 
   return (
-    <div className={styles.filesWrapper}>
-      {filesArray().map((item) => (
-        <File file={item} key={item.name} />
+    <div className={styles.filesWrapper} ref={fileWrapperRef}>
+      {filesArray().map((item, index) => (
+        <File file={item} key={item.name} index={index} containerRef={fileWrapperRef}/>
       ))}
     </div>
   );
