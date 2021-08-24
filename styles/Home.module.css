@@ -39,6 +39,10 @@
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+}
+
 .modalOverflow {
   position: absolute;
   display: flex;
@@ -94,4 +98,5 @@
   line-height: 27px;
   color: #FFFFFF;
   margin-top: 30px;
+  cursor: pointer;
 }
