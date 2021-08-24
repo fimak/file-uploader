@@ -2,12 +2,14 @@ import type { NextPage } from 'next'
 import React, {useState, useRef, useEffect, ChangeEvent} from 'react'
 import classnames from 'classnames';
 import Head from 'next/head'
+import Files from '../components/Files';
 
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const [show, setShow] = useState(false);
   const [showFiles, setShowFiles] = useState(false);
+  const [files, setFiles] = useState(null);
   const inputFile = useRef(null);
   const handleClick = () => {
     // @ts-ignore
@@ -19,6 +21,8 @@ const Home: NextPage = () => {
       setShow(true);
     } else {
       setShowFiles(true);
+      // @ts-ignore
+      setFiles(inputFile.current.files);
     }
   }
 
@@ -30,8 +34,6 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>TEST</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com" />
-        <link rel="stylesheet" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link
           href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
           rel="stylesheet" />
@@ -41,6 +43,9 @@ const Home: NextPage = () => {
 
       <div className={classnames({[styles.main]: true, [styles.mainModified]: showFiles})}>
         {!showFiles && <button className={styles.btn} onClick={handleClick}>Add file</button>}
+        {files && (
+          <Files files={files} />
+        )}
         <input className={styles.hidden} type="file" id="input" multiple ref={inputFile} onChange={handleChange} />
       </div>
 

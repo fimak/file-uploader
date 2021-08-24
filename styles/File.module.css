@@ -1,0 +1,32 @@
+.fileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 175px;
+  height: 205px;
+  background: #DFDFDF;
+  border-radius: 10px;
+  color: #49494A;
+  margin: 10px;
+}
+
+.thumbnail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  width: 135px;
+  height: 120px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px;
+}
+
+.filename {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
