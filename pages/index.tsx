@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
 import React, {useState, useRef, useEffect, ChangeEvent} from 'react'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import classnames from 'classnames';
 import Head from 'next/head'
 import Files from '../components/Files';
@@ -39,27 +41,28 @@ const Home: NextPage = () => {
           rel="stylesheet" />
       </Head>
 
-      <h1 className={styles.title}>Test</h1>
+      <DndProvider backend={HTML5Backend}>
+        <h1 className={styles.title}>Test</h1>
 
-      <div className={classnames({[styles.main]: true, [styles.mainModified]: showFiles})}>
-        {!showFiles && <button className={styles.btn} onClick={handleClick}>Add file</button>}
-        {files && (
-          <Files files={files} />
-        )}
-        <input className={styles.hidden} type="file" id="input" multiple ref={inputFile} onChange={handleChange} />
-      </div>
-
-      {show && (
-        <div className={styles.modalOverflow}>
-          <div className={styles.modalWindow}>
-            <button className={styles.modalClose} onClick={() => setShow(false)} />
-            <h1 className={styles.modalHeader}>Error</h1>
-            <p className={styles.modalDescription}>Please add not less than 2 and not more than 5 files.</p>
-            <button className={styles.modalBtn} onClick={() => setShow(false)}>OK</button>
-          </div>
+        <div className={classnames({[styles.main]: true, [styles.mainModified]: showFiles})}>
+          {!showFiles && <button className={styles.btn} onClick={handleClick}>Add file</button>}
+          {files && (
+            <Files files={files} />
+          )}
+          <input className={styles.hidden} type="file" id="input" multiple ref={inputFile} onChange={handleChange} />
         </div>
-      )}
 
+        {show && (
+          <div className={styles.modalOverflow}>
+            <div className={styles.modalWindow}>
+              <button className={styles.modalClose} onClick={() => setShow(false)} />
+              <h1 className={styles.modalHeader}>Error</h1>
+              <p className={styles.modalDescription}>Please add not less than 2 and not more than 5 files.</p>
+              <button className={styles.modalBtn} onClick={() => setShow(false)}>OK</button>
+            </div>
+          </div>
+        )}
+      </DndProvider>
     </div>
   )
 }
